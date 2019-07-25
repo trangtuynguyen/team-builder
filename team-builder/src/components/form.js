@@ -1,19 +1,26 @@
 import React from "react";
 import {useState} from "react";
 
-function Form({member, setMember}){
+function Form({member, setMember, memberToEdit}){
 
     //use an OBJECT to track multiple fields
 
-    const [user, setUser] = useState({name:"", email:"", role:""});
+    const [user, setUser] = useState({name:"", email:"", role:""}); //create STATE template
+
+
     
 
 
     function handleChange(event){
 
         const updatedUser = { ...user, [event.target.name]:event.target.value};
-        setUser(updatedUser);
 
+        if(memberToEdit != null){
+            setUser(memberToEdit)
+        }
+        else{
+            setUser(updatedUser);
+        }
     }
 
     function handleSubmit(event){
